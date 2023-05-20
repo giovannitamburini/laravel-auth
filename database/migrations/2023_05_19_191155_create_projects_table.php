@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 150)->unique();
+            $table->text('content');
+            // lo slug è il titolo reso leggibile come url, utilizzabile al posto del id
+            $table->string('slug', 150);
             $table->timestamps();
         });
     }
