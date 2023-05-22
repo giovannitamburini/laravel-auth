@@ -1,3 +1,14 @@
+@php
+
+$routeName = Route::currentRouteName();
+
+function routeNameContains($string) {
+
+    return str_contains(Route::currentRouteName(), $string);
+}
+    
+@endphp
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
 
@@ -91,28 +102,28 @@
 
         <aside id="admin-sidebar">
 
-            <div class="card">
-                <div class="card-header">
+            <div class="card {{$routeName == 'admin.home' ? 'border-primary' : ''}}">
+                <div class="card-header {{$routeName == 'admin.home' ? 'text-primary' : ''}}">
                   Dashboard
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{route('admin.home')}}" class="list-group-item list-group-item-action">Home</a>
+                    <a href="{{route('admin.home')}}" class="list-group-item list-group-item-action {{routeNameContains('admin.home') ? 'active' : ''}}">Home</a>
 
                 </div>
             </div>
 
             {{--nell'interpolazione della classe, il metodo restituisce true/false --}}
-            <div class="card {{str_contains(Route::currentRouteName(), 'projects.') ? 'border-primary' : ''}}">
-                <div class="card-header">
+            <div class="card {{routeNameContains('projects.') ? 'border-primary' : ''}}">
+                <div class="card-header {{routeNameContains('projects.') ? 'text-primary' : ''}}">
                     Project
                 </div>
 
                 <div class="list-group list-group-flush">
-                    <a href="{{route('admin.projects.index')}}" class="list-group-item list-group-item-action">Tutti i progetti</a>
+                    <a href="{{route('admin.projects.index')}}" class="list-group-item list-group-item-action {{routeNameContains('projects.index') ? 'active' : ''}}">Tutti i progetti</a>
                 </div>
 
                 <div class="list-group list-group-flush">
-                    <a href="{{route('admin.projects.create')}}" class="list-group-item list-group-item-action">Aggiungi un progetto</a>
+                    <a href="{{route('admin.projects.create')}}" class="list-group-item list-group-item-action {{routeNameContains('projects.create') ? 'active' : ''}}">Aggiungi un progetto</a>
                 </div>
             </div>
 
