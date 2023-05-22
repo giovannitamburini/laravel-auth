@@ -1,15 +1,17 @@
-@extends('layouts/admin')
+@extends('layouts.admin')
 
 @section('content')
 
-<table class="table table-striped">
-    <thead>
-        <th>
-            Titolo
-        </th>
-        <th>
-            Contenuto
-        </th>
+<div class="container">
+    
+    <table class="table table-striped mb-5">
+        <thead>
+            <th>
+                Titolo
+            </th>
+            <th>
+                Contenuto
+            </th>
         <th>
             Slug
         </th>
@@ -17,9 +19,9 @@
             Comandi
         </th>
     </thead>
-
+    
     <tbody>
-
+        
         {{-- ciclo per ogni project --}}
         @foreach ($projects as $project)
             
@@ -33,11 +35,18 @@
                 </a>
             </td>
         </tr>
-
+        
         @endforeach
 
     </tbody>
 </table>
 
+<div class="d-flex justify-content-around mb-5">
+    <a href="{{route('admin.projects.create')}}" class="btn btn-primary">
+        Aggiungi un progetto
+    </a>
+</div>
+
+</div>
 
 @endsection

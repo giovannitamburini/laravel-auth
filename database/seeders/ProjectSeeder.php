@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+// iportazione Model
 use App\Models\Project;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

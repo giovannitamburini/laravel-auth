@@ -34,11 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+// creo un gruppo di rotte per la sezione dedicata all'admin
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
 
-    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    Route::get('/', [DashboardController::class, 'home'])->name('home');
 });
 
 
